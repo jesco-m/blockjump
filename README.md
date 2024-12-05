@@ -291,7 +291,7 @@ Pikachu Jumper
         };
     </script>
     <div class="common bottom">
-        Copyright &copy; 2024
+        Copyright &copy;  2024
     </div>
 </body>
 </html>
