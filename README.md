@@ -8,7 +8,7 @@ Pikachu Jumper
     <title>Pikachu Game</title>
     <style>
         body {
-            background-color: #333;
+            background-color: #404040;
             margin: 0;
             overflow: hidden;
             font-family: Arial, sans-serif;
@@ -17,7 +17,7 @@ Pikachu Jumper
             position: relative;
             width: 100%;
             height: 400px;
-            background: #555;
+            background: #292929;
             display: none;
             overflow: hidden;
         }
