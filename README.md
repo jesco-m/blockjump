@@ -53,7 +53,7 @@ Pikachu Jumper
             left: 50px;
             width: 60px;
             height: 60px;
-            background-image: url('runningpika.png');
+            background-image: url('https://media.tenor.com/uUNcnHwYJQEAAAAi/running-pikachu-transparent-snivee.gif');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -162,7 +162,7 @@ Pikachu Jumper
             if (gameActive && (dinoBottom === 0 || dinoBottom === 40)) {
                 isJumping = true;
                 dinoVelocity = dinoJumpSpeed;
-                dino.style.backgroundImage = "url('jumpingpika.png')";
+                dino.style.backgroundImage = "url('https://media.tenor.com/uUNcnHwYJQEAAAAi/running-pikachu-transparent-snivee.gif')";
             }
         }
 
@@ -173,7 +173,7 @@ Pikachu Jumper
                 dinoBottom = 0;
                 dinoVelocity = 0;
                 isJumping = false;
-                dino.style.backgroundImage = "url('runningpika.png')";
+                dino.style.backgroundImage = "url('https://media.tenor.com/uUNcnHwYJQEAAAAi/running-pikachu-transparent-snivee.gif')";
             }
             dino.style.bottom = dinoBottom + 'px';
         }
@@ -205,7 +205,7 @@ Pikachu Jumper
             gameOverDisplay.style.display = 'none';
             jumpButton.disabled = false;
             dino.style.bottom = '0px';
-            dino.style.backgroundImage = "url('runningpika.png')";
+            dino.style.backgroundImage = "url('https://media.tenor.com/uUNcnHwYJQEAAAAi/running-pikachu-transparent-snivee.gif')";
         }
 
         function updateGame() {
