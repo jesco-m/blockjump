@@ -6,7 +6,7 @@
     <title>Pikachu Game</title>
     <style>
         body {
-            background-color: #404040;
+            background-color: #13912c;
             margin: 0;
             overflow: hidden;
             font-family: Arial, sans-serif;
@@ -15,9 +15,11 @@
             position: relative;
             width: 100%;
             height: 400px;
-            background: #292929;
+            background-image: url(https://img.itch.zone/aW1hZ2UvMTEyMzY0My82ODQyOTk3LmdpZg==/347x500/ffKU1m.gif);
             display: none;
             overflow: hidden;
+            background-position: center;
+            background-size: cover;
         }
         #score {
             position: absolute;
@@ -41,16 +43,19 @@
         .cactus {
             position: absolute;
             bottom: 0;
-            width: 20px;
-            height: 40px;
-            background-color: #39ff14;
+            width: 40px;
+            height: 80px;
+            background-image: url(https://vgboxart.com/resources/render/13697_pokeball-prev.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
         .dinosaur {
             position: absolute;
             bottom: 0;
-            left: 50px;
-            width: 60px;
-            height: 60px;
+            left: 75px;
+            width: 90px;
+            height: 90px;
             background-image: url('https://media.tenor.com/uUNcnHwYJQEAAAAi/running-pikachu-transparent-snivee.gif');
             background-size: contain;
             background-repeat: no-repeat;
@@ -109,7 +114,7 @@
         let gameLoop;
         let cactusSpawnInterval;
         let dinoBottom = 0;
-        let dinoJumpSpeed = 10;
+        let dinoJumpSpeed = 15;
         let dinoGravity = 0.8;
         let dinoVelocity = 0;
         const maxCactusDistance = 150;
@@ -157,7 +162,7 @@
         }
 
         function jump() {
-            if (gameActive && (dinoBottom === 0 || dinoBottom === 40)) {
+            if (gameActive && (dinoBottom === 0 || dinoBottom === 80)) {
                 isJumping = true;
                 dinoVelocity = dinoJumpSpeed;
                 dino.style.backgroundImage = "url('https://media.tenor.com/uUNcnHwYJQEAAAAi/running-pikachu-transparent-snivee.gif')";
@@ -219,7 +224,7 @@
             const cacti = document.querySelectorAll('.cactus');
             cacti.forEach(cactus => {
                 let cactusPosition = parseInt(cactus.style.left);
-                if (cactusPosition < -20) {
+                if (cactusPosition < -40) {
                     cactus.remove();
                     cactiPositions.shift();
                 } else {
@@ -251,10 +256,10 @@
             cacti.forEach(cactus => {
                 const cactusRect = cactus.getBoundingClientRect();
                 if (dinoRect.right > cactusRect.left && dinoRect.left < cactusRect.right) {
-                    if (dinoRect.bottom > cactusRect.top && dinoRect.top < cactusRect.top) {
+                    if (dinoRect.bottom > cactusRect.top && dinoRect.top < cactusRect.top && dinoRect.right > cactusRect.left + 5) {
                         gameOver();
                     } else if (dinoRect.bottom <= cactusRect.top && dinoRect.bottom > cactusRect.top - 10) {
-                        dinoBottom = 40;
+                        dinoBottom = 80;
                         dino.style.bottom = dinoBottom + 'px';
                         dinoVelocity = 0;
                         isJumping = false;
