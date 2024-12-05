@@ -117,7 +117,7 @@ Pikachu Jumper
         let cactusSpawnInterval;
         let dinoBottom = 0;
         let dinoJumpSpeed = 15;
-        let dinoGravity = 0.8;
+        let dinoGravity = 0.9;
         let dinoVelocity = 0;
         const maxCactusDistance = 150;
         const cactiPositions = [];
