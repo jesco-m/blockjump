@@ -5,7 +5,7 @@ Block Jumper
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinosaur Game</title>
+    <title>Block Jumper Game</title>
     <style>
         body {
             background-color: #333;
