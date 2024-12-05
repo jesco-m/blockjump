@@ -1,11 +1,11 @@
-# blockjump
-Block Jumper
+# Pikachujump
+Pikachu Jumper
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Jumper Game</title>
+    <title>Pikachu Game</title>
     <style>
         body {
             background-color: #333;
@@ -51,9 +51,12 @@ Block Jumper
             position: absolute;
             bottom: 0;
             left: 50px;
-            width: 40px;
+            width: 60px;
             height: 60px;
-            background-color: white;
+            background-image: url('runningpika.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
         #gameOver {
             position: absolute;
@@ -96,11 +99,9 @@ Block Jumper
     <button id="startButton">START GAME</button>
     <button id="jumpButton">JUMP</button>
     <div id="gameOver">
-        GAME OVER
-        <br>
+        GAME OVER <br>
         <button id="tryAgain">TRY AGAIN</button>
     </div>
-
     <script>
         let distance = 0;
         let isJumping = false;
@@ -122,10 +123,6 @@ Block Jumper
         const tryAgainButton = document.getElementById('tryAgain');
         const startButton = document.getElementById('startButton');
         const gameCanvas = document.getElementById('gameCanvas');
-
-        function randomColor() {
-            return '#' + Math.floor(Math.random()*16777215).toString(16);
-        }
 
         function checkCactusDistance(cactiPositions, newPosition, maxDistance) {
             const nearbyCacti = cactiPositions.filter(pos => Math.abs(pos - newPosition) <= maxDistance);
@@ -161,6 +158,26 @@ Block Jumper
             }
         }
 
+        function jump() {
+            if (gameActive && (dinoBottom === 0 || dinoBottom === 40)) {
+                isJumping = true;
+                dinoVelocity = dinoJumpSpeed;
+                dino.style.backgroundImage = "url('jumpingpika.png')";
+            }
+        }
+
+        function updateDinoPosition() {
+            dinoBottom += dinoVelocity;
+            dinoVelocity -= dinoGravity;
+            if (dinoBottom <= 0) {
+                dinoBottom = 0;
+                dinoVelocity = 0;
+                isJumping = false;
+                dino.style.backgroundImage = "url('runningpika.png')";
+            }
+            dino.style.bottom = dinoBottom + 'px';
+        }
+
         startButton.onclick = () => {
             startGame();
             startButton.style.display = 'none';
@@ -188,32 +205,11 @@ Block Jumper
             gameOverDisplay.style.display = 'none';
             jumpButton.disabled = false;
             dino.style.bottom = '0px';
-        }
-
-        function jump() {
-            if (gameActive && (dinoBottom === 0 || dinoBottom === 40)) {
-                isJumping = true;
-                dinoVelocity = dinoJumpSpeed;
-                dino.style.backgroundColor = randomColor();
-            }
-        }
-
-        function updateDinoPosition() {
-            dinoBottom += dinoVelocity;
-            dinoVelocity -= dinoGravity;
-
-            if (dinoBottom <= 0) {
-                dinoBottom = 0;
-                dinoVelocity = 0;
-                isJumping = false;
-            }
-
-            dino.style.bottom = dinoBottom + 'px';
+            dino.style.backgroundImage = "url('runningpika.png')";
         }
 
         function updateGame() {
             if (!gameActive) return;
-
             updateGameSpeed();
             moveCacti();
             updateDinoPosition();
@@ -242,7 +238,6 @@ Block Jumper
         function updateGameSpeed() {
             const currentTime = Date.now();
             const elapsedMinutes = (currentTime - startTime) / 60000;
-            
             if (elapsedMinutes >= 4) {
                 gameSpeed = 20;
             } else if (elapsedMinutes >= 2) {
@@ -255,11 +250,9 @@ Block Jumper
         function checkCollisions() {
             const cacti = document.querySelectorAll('.cactus');
             const dinoRect = dino.getBoundingClientRect();
-
             cacti.forEach(cactus => {
                 const cactusRect = cactus.getBoundingClientRect();
-                if (dinoRect.right > cactusRect.left && 
-                    dinoRect.left < cactusRect.right) {
+                if (dinoRect.right > cactusRect.left && dinoRect.left < cactusRect.right) {
                     if (dinoRect.bottom > cactusRect.top && dinoRect.top < cactusRect.top) {
                         gameOver();
                     } else if (dinoRect.bottom <= cactusRect.top && dinoRect.bottom > cactusRect.top - 10) {
@@ -293,7 +286,7 @@ Block Jumper
         };
     </script>
     <div class="common bottom">
-        Copyright &copy; 2024 
+        Copyright &copy; 2024
     </div>
 </body>
 </html>
