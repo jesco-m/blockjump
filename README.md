@@ -1,5 +1,5 @@
-# dinogame
-Dinosaur Game Jumper
+# blockjump
+Block Jumper
 <!DOCTYPE html>
 <html lang="en">
 <head>
